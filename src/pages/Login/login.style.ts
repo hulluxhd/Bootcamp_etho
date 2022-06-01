@@ -4,12 +4,31 @@ import { Grid } from "@mui/material";
 export const Wrapper = styled(Grid)`
     min-height: 100vh;
     background: #1a1a1a;
-    div{
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+`
+export const Input = styled.input`
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+`
+
+export const Button = styled.button`
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #E31A13;
+    margin-top: 10px;
+    background: #E31A13;
+    color: #fff;
+    font-weight: 400;
+    cursor: pointer;
+    transition: filter ease-in-out 0.2s;
+    &:hover{
+        filter: brightness(0.9);
     }
-    input{
-        padding: 9px;
-    }
+`
+
+export const Error = styled.p`
+    font-weight: 600;
+    color: #E31A13;
 `
