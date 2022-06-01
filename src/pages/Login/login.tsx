@@ -45,10 +45,10 @@ function Login() {
     return (
     <Wrapper container justifyContent="center" alignItems="center">
       <Grid container xs={3} gap="14px">
-        <Input name="email" type="text" placeholder="E-mail" onChange={handleChange}/>
-        <Input name="password" type="password" placeholder="Senha" onChange={handleChange}/>
+            <Input name="email" type="text" placeholder="E-mail" onChange={handleChange}/>
+            <Input name="password" type="password" placeholder="Senha" onChange={handleChange}/>
         <Button onClick={handleSubmit}>Entrar</Button>
-            {errors && <Error>{ errors}</Error>}
+        {errors && <Error>{ errors}</Error>}
       </Grid>
     </Wrapper>
   );
