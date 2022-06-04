@@ -1,34 +1,35 @@
 import styled from "styled-components";
 import { Grid } from "@mui/material";
+import netflix from "../../assets/images/netflix.png";
+import netflixLogo from "../../assets/images/netflix-logo.png";
 
 export const Wrapper = styled(Grid)`
-    min-height: 100vh;
-    background: #1a1a1a;
-`
-export const Input = styled.input`
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #E0E0E0;
-    border-radius: 5px;
-`
+  min-height: 100vh;
+  background: #1a1a1a;
+`;
+export const BgImage = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(${netflix});
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: opacity(0.03);
+`;
 
-export const Button = styled.button`
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #E31A13;
-    margin-top: 10px;
-    background: #E31A13;
-    color: #fff;
-    font-weight: 400;
-    cursor: pointer;
-    transition: filter ease-in-out 0.2s;
-    &:hover{
-        filter: brightness(0.9);
-    }
-`
+export const Logo = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 2rem 1rem;
+`;
 
-export const Error = styled.p`
-    font-weight: 600;
-    color: #E31A13;
-`
+Logo.defaultProps = {
+  src: netflixLogo,
+};
+
+export const Text = styled.p`
+  color: ${(props) => props.theme.palette.typography.primary};
+  padding: 1rem 0;
+  text-align: center;
+`;
