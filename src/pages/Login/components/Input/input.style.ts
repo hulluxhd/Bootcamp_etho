@@ -9,8 +9,8 @@ export const Input = styled.input`
       theme: { layout, palette },
     } = props;
     return css`
-      ${layout.border.small} solid ${palette.border.default}
+      ${layout.border.small} solid ${palette.core.secondary}
     `;
   }};
-  border-radius: ${(props) => props.theme.layout.border.medium};
+  border-radius: ${(props) => props.theme.layout.border.large};
 `;
