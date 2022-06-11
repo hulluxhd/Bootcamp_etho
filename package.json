@@ -1,0 +1,25 @@
+{
+  "name": "bootcamp_etho",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/typescript-01.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hulluxhd/Bootcamp_etho.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hulluxhd/Bootcamp_etho/issues"
+  },
+  "homepage": "https://github.com/hulluxhd/Bootcamp_etho#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.42",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  }
+}

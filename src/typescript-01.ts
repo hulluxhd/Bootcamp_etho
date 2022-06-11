@@ -9,6 +9,7 @@ enum IndicativeRating {
 }
 
 interface Movie {
+    id: number,
     name: string,
     indicativeRating: IndicativeRating,
     ratings: number[],
@@ -27,12 +28,13 @@ const user: User = {
     age: 9
 }
 
+// Math.ceil(Math.random() * 100)
 const movies: Movie[] =
     [
-        { name: 'Avengers', indicativeRating: IndicativeRating.AL, ratings: [1, 3, 4] },
-        { name: 'LOTR', indicativeRating: IndicativeRating.A10, ratings: [5, 5, 5] },
-        { name: 'Dead Space', indicativeRating: IndicativeRating.A18, ratings: [] },
-        { name: 'Not', indicativeRating: IndicativeRating.A12, ratings: [1, 1, 1] }
+        { id: 1, name: 'Avengers', indicativeRating: IndicativeRating.AL, ratings: [1, 3, 4] },
+        { id: 2, name: 'LOTR', indicativeRating: IndicativeRating.A10, ratings: [5, 5, 5] },
+        { id: 3, name: 'Dead Space', indicativeRating: IndicativeRating.A18, ratings: [] },
+        { id: 4, name: 'Not', indicativeRating: IndicativeRating.A12, ratings: [1, 1, 1] }
     ]
 
 
@@ -96,11 +98,16 @@ function addMovieToUserList(movie: Movie, user: User): void {
     } else user.myList = [movie]
 }
 
-console.log(user)
+function addManyMoviesWithId(user: User, ...ids: number[]) {
+    ids.forEach(id => {
+        const movieFound = movies.find((movie) => movie.id === id )
+        if (movieFound) {
+            addMovieToUserList(movieFound, user)
+        }
+    })
+}
 
-
-addMovieToUserList(movies[0], user)
-addMovieToUserList(movies[1], user)
+addManyMoviesWithId(user, 1, 2, 4)
 
 console.log(user)
 
