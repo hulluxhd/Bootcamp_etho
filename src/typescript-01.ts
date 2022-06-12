@@ -1,7 +1,9 @@
 import { IndicativeRating } from "./enum/enum.IndicativeRating";
 import { Movie } from "./interfaces/interface.Movie";
 import { User } from "./interfaces/interface.User";
+import { MoviesApi } from "./service/moviesApi";
 import { addManyMoviesWithIdAndReturnANewUser } from "./utils/util.addMovies";
+import { sanitizedMovies } from "./utils/util.convertingApiDataToMovie";
 
 
 const user: User = {
@@ -19,7 +21,14 @@ const movies: Movie[] =
     ]
 
 
-console.log(addManyMoviesWithIdAndReturnANewUser(user, movies, 1, 2, 4))
+const dataFromMoviesApi = 
+            MoviesApi
+            .get("/movies")
+            .then(response => {
+                const {data} = response.data
+                console.log(sanitizedMovies(data))
+            })
 
+//console.log(addManyMoviesWithIdAndReturnANewUser(user, movies, 1, 2, 4))
 // console.log(filterMoviesByIndicativeRating(movies, user))
 

@@ -2,7 +2,7 @@
   "name": "bootcamp_etho",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "typescript-01",
   "scripts": {
     "start": "ts-node ./src/typescript-01.ts"
   },
