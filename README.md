@@ -6,7 +6,7 @@ Estamos desenvolvendo uma aplicação SPA utilizando o template da Netflix.
 | ----------- | ----------- |
 | Styled Components | Node |
 | Redux | TS-Node | 
-| React Router |  | 
+| React Router | Inquirer.js | 
 | Yup |  | 
 | Toastify |  | 
 | Typescript |  | 
@@ -23,6 +23,7 @@ O projeto tem por finalidade aprofundar o conhecimento em diversos fluxos de tra
 * Gerenciamento de estados globais por meio de redux 
 * Tematização da aplicação
 * Tipagem com typescript
+* Criação de interação com o usuário via CLI com Inquirer.js
 
 
 
