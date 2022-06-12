@@ -1,11 +1,8 @@
-import { IndicativeRating } from "./enum/enum.IndicativeRating";
-import { Movie } from "./interfaces/interface.Movie";
+import inquirer from "inquirer";
 import { User } from "./interfaces/interface.User";
-import { BaseService } from "./service/service.BaseService";
 import { MovieService } from "./service/service.MovieService";
-import { addManyMoviesWithIdAndReturnANewUser } from "./utils/util.addMovies";
-import { sanitizedMovies } from "./utils/util.convertingApiDataToMovie";
 
+//Generics
 
 const user: User = {
     name: "Denny",
@@ -13,7 +10,24 @@ const user: User = {
 }
 
 const request = new MovieService()
-request.listAllMovies().then(resp => console.log(resp))
+//request.listAllMovies().then(resp => console.log(resp))
+
+
+const questions = [
+    {
+        type: "input",
+        name: "option",
+        message: "Digite uma opção: \n 1 - Baixar filmes \n 2 - Sair"
+    }
+]
+
+inquirer.prompt(questions).then(answers => 
+        console.log(answers)
+    )
+
+
+
+
 
 
 //console.log(addManyMoviesWithIdAndReturnANewUser(user, movies, 1, 2, 4))

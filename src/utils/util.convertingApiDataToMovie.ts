@@ -10,10 +10,9 @@ interface MoviesFromApiDTO {
     title: string,
     duration: number,
     directed_by: string 
-
 }
 
-export function sanitizedMovies(data: MoviesFromApiDTO[]): Partial<Movie>[]{
+export function sanitizedMovies(data: MoviesFromApiDTO[]): Omit<Movie, "indicativeRating" | "ratings">[]{
     return data.map((movie)=>({
         id: movie.id,
         name: movie.title,

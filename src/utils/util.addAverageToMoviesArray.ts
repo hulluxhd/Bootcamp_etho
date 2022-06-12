@@ -1,6 +1,8 @@
 import { Movie } from "../interfaces/interface.Movie";
 
-export type MovieWithAverage = Movie & { average: number };
+export interface MovieWithAverage extends Movie {
+    average: number
+};
 
 export function addAverageToMoviesArray(movies: Movie[]): MovieWithAverage[] {
     const moviesWithAverage = movies.map(movie => {
