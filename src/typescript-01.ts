@@ -22,7 +22,7 @@ const questions = [
     type: "input",
     name: "option",
     message:
-      "Digite uma opção: \n 1 - Baixar Filmes \n 2 - Login \n 3 - Dar avaliação \n 4 - Mostrar filmes com média \n 5 - Adicionar filme à minha lista \n 6 - Mostrar minha lista \n 0 - Sair \n>>>",
+      "Digite uma opção: \n 1 - Ver filmes \n 2 - Dar avaliação \n 3 - Mostrar filmes com média \n 4 - Adicionar filme à minha lista \n 5 - Mostrar minha lista \n 0 - Sair \n>>>",
   },
 ];
 
@@ -58,44 +58,72 @@ const rateQuestions = [
   },
 ];
 
+const exitQuestions = [
+  {
+    type: "input",
+    name: "option",
+    message: "Digite seu id | Sair [0]?\n>>>",
+  },
+];
+
 const possibleAnswers = {
   DOWNLOAD: "1",
-  LOGIN: "2",
-  RATE_MOVIE: "3",
-  SHOW_MOVIES_WITH_AVERAGE: "4",
-  ADD_TO_USER_LIST: "5",
-  SHOW_USER_LIST: "6",
+  RATE_MOVIE: "2",
+  SHOW_MOVIES_WITH_AVERAGE: "3",
+  ADD_TO_USER_LIST: "4",
+  SHOW_USER_LIST: "5",
   EXIT: "0",
 };
 
-async function run() {
-  const answers = await inquirer.prompt(questions);
 
+
+async function login(){
+  const {option} = await inquirer.prompt(loginQuestions);
+
+  const findUser = (option: string) => users.find(
+    (user) => user.id == parseInt(option)
+    );
+
+  let userFound = findUser(option)
+
+  if (userFound){
+    loggedUser = userFound
+    console.log("Usuário logado: " + loggedUser.name);
+  } 
+  else {
+
+    while(!userFound){
+      console.log("Usuário não encontrado. Aperte 0 para sair.")
+      const {option} = await inquirer.prompt(exitQuestions)
+
+      if(parseInt(option) == 0) break
+
+      userFound = findUser(option)
+      
+      if (userFound) {
+        loggedUser = userFound
+        console.log("Usuário logado: " + loggedUser.name);
+      } 
+    }
+  }
+}
+
+async function run() {
   const movieService = new MovieService();
+  movies = await movieService.listAllMovies();
+
+  const seeMovies = () => movies.forEach(movie => console.log(`${movie.id} - ${movie.name}`))
+  
+  seeMovies()
+  
+  loggedUser ? console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*") :  await login()
+  
+  const answers = await inquirer.prompt(questions);
 
   switch (answers.option) {
     case possibleAnswers.DOWNLOAD:
-      movies = await movieService.listAllMovies();
-      console.log(movies);
-
-      run();
-
-      break;
-
-    case possibleAnswers.LOGIN:
-      const loginAnswer = await inquirer.prompt(loginQuestions);
-
-      const userFound = users.find(
-        (user) => user.id == parseInt(loginAnswer.option)
-      );
-
-      if (userFound) {
-        loggedUser = userFound;
-        console.log("Usuário logado: " + loggedUser.name);
-      }
-
-      run();
-
+      seeMovies()
+      run()
       break;
 
     case possibleAnswers.RATE_MOVIE:
