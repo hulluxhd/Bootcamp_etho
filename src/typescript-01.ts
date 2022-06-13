@@ -97,6 +97,7 @@ async function run() {
       run();
 
       break;
+
     case possibleAnswers.RATE_MOVIE:
       let movieId: string;
       let rate: string;
@@ -113,6 +114,7 @@ async function run() {
 
       movies[movieIndex].ratings.push(parseInt(rate));
       console.log(movies[movieIndex]);
+
       run();
 
       break;
@@ -137,7 +139,9 @@ async function run() {
       );
 
       console.log("Filme(s) adicionados");
+
       run();
+
       break;
 
     case possibleAnswers.SHOW_USER_LIST:
@@ -148,6 +152,7 @@ async function run() {
       });
 
       run();
+
       break;
 
     case possibleAnswers.EXIT:
