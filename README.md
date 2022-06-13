@@ -25,6 +25,9 @@ O projeto tem por finalidade aprofundar o conhecimento em diversos fluxos de tra
 * Tipagem com typescript
 * Criação de interação com o usuário via CLI com Inquirer.js
 
-
+## Estrutura
+Há duas branchs principais: frontend e typescript.
+- Na branch de `frontend` está o projeto de clone do netflix, utilizando as tecnologias supramencionadas.
+- Na branch `typescript` há o projeto de CLI com typescript
 
 **Nota**: há dois contribuidores para o projeto pois muitas vezes continuo o trabalho do computador de um familiar.
