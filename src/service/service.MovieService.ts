@@ -1,11 +1,12 @@
+import { Movie } from "../interfaces/interface.Movie";
 import { sanitizedMovies } from "../utils/util.convertingApiDataToMovie";
 import { BaseService } from "./service.BaseService";
 
-interface MoviesFromApiDTO {
+export interface MoviesFromApiDTO {
     id: number,
     title: string,
     duration: number,
-    directed_by: string 
+    directed_by: string,
 }
 
 interface ResponseAPI {
