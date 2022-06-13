@@ -17,7 +17,7 @@ let movies: Movie[];
 
 let loggedUser: User;
 
-const questions = [
+const baseQuestions = [
   {
     type: "input",
     name: "option",
@@ -41,6 +41,8 @@ const addMovieQuestions = [
     message: "Qual(is) filme(s)? ex: 1, 2, 3, 4\n>>>",
   },
 ];
+
+
 
 const loginQuestions = [
   {
@@ -75,7 +77,15 @@ const possibleAnswers = {
   EXIT: "0",
 };
 
+const questions = {
+  addMovieQuestions,
+  baseQuestions,
+  chooseMovieQuestions,
+  loginQuestions,
+  rateQuestions,
+  exitQuestions
 
+}
 
 async function login(){
   const {option} = await inquirer.prompt(loginQuestions);
@@ -94,7 +104,7 @@ async function login(){
 
     while(!userFound){
       console.log("Usuário não encontrado. Aperte 0 para sair.")
-      const {option} = await inquirer.prompt(exitQuestions)
+      const {option} = await inquirer.prompt(questions.exitQuestions)
 
       if(parseInt(option) == 0) break
 
@@ -118,7 +128,7 @@ async function run() {
   
   loggedUser ? console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*") :  await login()
   
-  const answers = await inquirer.prompt(questions);
+  const answers = await inquirer.prompt(questions.baseQuestions);
 
   switch (answers.option) {
     case possibleAnswers.DOWNLOAD:
@@ -130,10 +140,10 @@ async function run() {
       let movieId: string;
       let rate: string;
 
-      const chooseMovieAnswers = await inquirer.prompt(chooseMovieQuestions);
+      const chooseMovieAnswers = await inquirer.prompt(questions.chooseMovieQuestions);
       movieId = chooseMovieAnswers.option;
 
-      const rateAnswers = await inquirer.prompt(rateQuestions);
+      const rateAnswers = await inquirer.prompt(questions.rateQuestions);
       rate = rateAnswers.option;
 
       const movieIndex = movies.findIndex(
@@ -174,8 +184,11 @@ async function run() {
 
     case possibleAnswers.SHOW_USER_LIST:
       loggedUser.myList?.forEach((movie) => {
+        
+        const duration = (movie.duration / 60).toString().slice(0, 4)
+
         console.log(
-          `id: ${movie.id} | ${movie.name} | ${movie.duration / 60} horas`
+          `id: ${movie.id} | ${movie.name} | ${duration} horas`
         );
       });
 
