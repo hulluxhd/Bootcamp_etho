@@ -12,11 +12,12 @@ interface MoviesFromApiDTO {
     directed_by: string 
 }
 
-export function sanitizedMovies(data: MoviesFromApiDTO[]): Omit<Movie, "indicativeRating" | "ratings">[]{
+export function sanitizedMovies(data: MoviesFromApiDTO[]): Movie[]{
     return data.map((movie)=>({
         id: movie.id,
         name: movie.title,
         duration: movie.duration,
-        directedBy: movie.directed_by
+        directedBy: movie.directed_by,
+        ratings: []
     }))
 }
