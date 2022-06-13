@@ -3,6 +3,7 @@ import { Movie } from "./interfaces/interface.Movie";
 import { User } from "./interfaces/interface.User";
 import { MovieService } from "./service/service.MovieService";
 import { addAverageToMoviesArray } from "./utils/util.addAverageToMoviesArray";
+import { addManyMoviesWithIdAndReturnANewUser } from "./utils/util.addMovies";
 
 //Generics
 
@@ -26,7 +27,7 @@ const questions = [
     type: "input",
     name: "option",
     message:
-      "Digite uma opção: \n 1 - Baixar Filmes \n 2 - Login \n 3 - Dar avaliação \n 4 - Mostrar filmes com média \n 0 - Sair",
+      "Digite uma opção: \n 1 - Baixar Filmes \n 2 - Login \n 3 - Dar avaliação \n 4 - Mostrar filmes com média \n 5 - Adicionar filme à minha lista \n 0 - Sair \n>>>",
   },
 ];
 
@@ -34,7 +35,7 @@ const chooseMovieQuestions = [
   {
     type: "input",
     name: "option",
-    message: "Qual filme?",
+    message: "Qual filme?\n>>>",
   },
 ];
 
@@ -42,7 +43,7 @@ const loginQuestions = [
   {
     type: "input",
     name: "option",
-    message: "Qual é o seu id de usuário?",
+    message: "Qual é o seu id de usuário?\n>>>",
   },
 ];
 
@@ -50,7 +51,7 @@ const rateQuestions = [
   {
     type: "input",
     name: "option",
-    message: "Qual avaliacao de 0 a 5?",
+    message: "Qual avaliacao de 0 a 5?\n>>>",
   },
 ];
 
@@ -59,6 +60,7 @@ const possibleAnswers = {
   LOGIN: "2",
   RATE_MOVIE: "3",
   SHOW_MOVIES_WITH_AVERAGE: "4",
+  ADD_TO_USER_LIST: "5",
   EXIT: "0",
 };
 
@@ -76,8 +78,10 @@ async function run() {
 
     case possibleAnswers.LOGIN:
       const loginAnswer = await inquirer.prompt(loginQuestions);
-      const userFound = users.find((user) => user.id == parseInt(loginAnswer));
-      console.log(userFound);
+      const userFound = users.find(
+        (user) => user.id == parseInt(loginAnswer.option)
+      );
+
       if (userFound) {
         loggedUser = userFound;
         console.log("Usuário logado: " + loggedUser.name);
@@ -104,6 +108,22 @@ async function run() {
       break;
     case possibleAnswers.SHOW_MOVIES_WITH_AVERAGE:
       console.log(addAverageToMoviesArray(movies));
+      run();
+      break;
+    case possibleAnswers.ADD_TO_USER_LIST:
+      const movieAnswer = await inquirer.prompt(chooseMovieQuestions);
+      const movieListToAdd = movieAnswer.option
+        .split(",")
+        .map((i: string) => parseInt(i));
+      console.log(movieListToAdd);
+      loggedUser = addManyMoviesWithIdAndReturnANewUser(
+        loggedUser,
+        movies,
+        ...movieListToAdd
+      );
+      console.log(loggedUser, movieAnswer);
+      run();
+      break;
     case possibleAnswers.EXIT:
       break;
   }
