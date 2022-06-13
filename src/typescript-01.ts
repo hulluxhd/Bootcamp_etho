@@ -5,8 +5,6 @@ import { MovieService } from "./service/service.MovieService";
 import { addAverageToMoviesArray } from "./utils/util.addAverageToMoviesArray";
 import { addManyMoviesWithIdAndReturnANewUser } from "./utils/util.addMovies";
 
-//Generics
-
 const users: User[] = [
   {
     id: 1,
@@ -19,15 +17,12 @@ let movies: Movie[];
 
 let loggedUser: User;
 
-const request = new MovieService();
-//request.listAllMovies().then(resp => console.log(resp))
-
 const questions = [
   {
     type: "input",
     name: "option",
     message:
-      "Digite uma opção: \n 1 - Baixar Filmes \n 2 - Login \n 3 - Dar avaliação \n 4 - Mostrar filmes com média \n 5 - Adicionar filme à minha lista \n 0 - Sair \n>>>",
+      "Digite uma opção: \n 1 - Baixar Filmes \n 2 - Login \n 3 - Dar avaliação \n 4 - Mostrar filmes com média \n 5 - Adicionar filme à minha lista \n 6 - Mostrar minha lista \n 0 - Sair \n>>>",
   },
 ];
 
@@ -36,6 +31,14 @@ const chooseMovieQuestions = [
     type: "input",
     name: "option",
     message: "Qual filme?\n>>>",
+  },
+];
+
+const addMovieQuestions = [
+  {
+    type: "input",
+    name: "option",
+    message: "Qual(is) filme(s)? ex: 1, 2, 3, 4\n>>>",
   },
 ];
 
@@ -61,6 +64,7 @@ const possibleAnswers = {
   RATE_MOVIE: "3",
   SHOW_MOVIES_WITH_AVERAGE: "4",
   ADD_TO_USER_LIST: "5",
+  SHOW_USER_LIST: "6",
   EXIT: "0",
 };
 
@@ -73,11 +77,14 @@ async function run() {
     case possibleAnswers.DOWNLOAD:
       movies = await movieService.listAllMovies();
       console.log(movies);
+
       run();
+
       break;
 
     case possibleAnswers.LOGIN:
       const loginAnswer = await inquirer.prompt(loginQuestions);
+
       const userFound = users.find(
         (user) => user.id == parseInt(loginAnswer.option)
       );
@@ -86,7 +93,9 @@ async function run() {
         loggedUser = userFound;
         console.log("Usuário logado: " + loggedUser.name);
       }
+
       run();
+
       break;
     case possibleAnswers.RATE_MOVIE:
       let movieId: string;
@@ -101,29 +110,46 @@ async function run() {
       const movieIndex = movies.findIndex(
         (movie) => movie.id == parseInt(movieId)
       );
+
       movies[movieIndex].ratings.push(parseInt(rate));
       console.log(movies[movieIndex]);
       run();
 
       break;
+
     case possibleAnswers.SHOW_MOVIES_WITH_AVERAGE:
       console.log(addAverageToMoviesArray(movies));
       run();
+
       break;
+
     case possibleAnswers.ADD_TO_USER_LIST:
-      const movieAnswer = await inquirer.prompt(chooseMovieQuestions);
+      const movieAnswer = await inquirer.prompt(addMovieQuestions);
+
       const movieListToAdd = movieAnswer.option
         .split(",")
         .map((i: string) => parseInt(i));
-      console.log(movieListToAdd);
+
       loggedUser = addManyMoviesWithIdAndReturnANewUser(
         loggedUser,
         movies,
         ...movieListToAdd
       );
-      console.log(loggedUser, movieAnswer);
+
+      console.log("Filme(s) adicionados");
       run();
       break;
+
+    case possibleAnswers.SHOW_USER_LIST:
+      loggedUser.myList?.forEach((movie) => {
+        console.log(
+          `id: ${movie.id} | ${movie.name} | ${movie.duration / 60} horas`
+        );
+      });
+
+      run();
+      break;
+
     case possibleAnswers.EXIT:
       break;
   }
