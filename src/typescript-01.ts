@@ -184,7 +184,7 @@ async function run() {
 
     case possibleAnswers.SHOW_USER_LIST:
       loggedUser.myList?.forEach((movie) => {
-        
+
         const duration = (movie.duration / 60).toString().slice(0, 4)
 
         console.log(
