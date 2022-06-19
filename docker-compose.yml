@@ -1,0 +1,12 @@
+# para rodar: docker-compose up
+version: '3'
+services: 
+  mysql-api:
+    image: "mysql:latest"
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_DATABASE="netflixapi"
+      - MYSQL_USER="admin"
+      - MYSQL_PASSWORD="abcbanana"
+      - MYSQL_ROOT_PASSWORD="abcbanana"
