@@ -10,6 +10,8 @@ Estamos desenvolvendo uma aplicação SPA utilizando o template da Netflix.
 | Yup | Express | 
 | Toastify | MySQL2 | 
 | Typescript | Typeorm | 
+|  | Nodemon | 
+|  | Joi | 
 
 ### Cronograma
 - [x] Semana 1 (Frontend) | 30/05 - 03/06
@@ -23,13 +25,15 @@ O projeto tem por finalidade aprofundar o conhecimento em diversos fluxos de tra
 * Gerenciamento de estados globais por meio de redux 
 * Tematização da aplicação
 * Tipagem com typescript
+* Utilização de hooks de performance (useMemo, useCallback) para maximizar a eficiência da aplicação
 * Criação de interação com o usuário via CLI com Inquirer.js
 * Modelagem de backend com node + express
-* Banco de dados local com Docker
+
 
 ## Estrutura
-Há duas branchs principais: frontend e typescript.
+Há três branchs principais: frontend, backend e typescript.
 - Na branch de `frontend` está o projeto de clone do netflix, utilizando as tecnologias supramencionadas.
-- Na branch `typescript` há o projeto de CLI com typescript
+- Na branch `typescript` há um projeto de CLI com typescript.
+- Na branch `backend` está toda a estrutura de backend + banco de dados.
 
 **Nota**: há dois contribuidores para o projeto pois muitas vezes continuo o trabalho do computador de um familiar.
