@@ -13,4 +13,7 @@ export const Input = styled.input`
     `;
   }};
   border-radius: ${(props) => props.theme.layout.border.large};
+  &placeholder {
+    font-family: 'Open Sans';
+  }
 `;

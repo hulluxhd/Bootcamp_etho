@@ -6,10 +6,12 @@ import Login from "./pages/Login/login";
 import MoviesList from "./pages/Movies-List/movies-list";
 import { LOGIN_URL } from "./pages/Login/login.type";
 import { MOVIES_LIST_URL } from "./pages/Movies-List/movies-list.type";
+import { Provider } from "react-redux";
+import store from "./store/store/store";
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <BrowserRouter>
@@ -19,7 +21,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
-    </>
+    </Provider>
   );
 }
 

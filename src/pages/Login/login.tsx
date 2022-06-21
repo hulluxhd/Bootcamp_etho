@@ -6,12 +6,20 @@ import * as yup from "yup";
 import Button from "../../components/Button/button";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { authenticated } from "../../store/user/user.selector";
+import userSlice from "../../store/user/user.slice";
 
 function Login() {
   const [data, setData] = useState({
     email: "",
     password: "",
   });
+
+  const userAuthenticated = useSelector(authenticated)
+
+  const dispatch = useDispatch()
+
 
   const toastError = () => toast.error(error, {
     position: "top-right",
@@ -46,6 +54,8 @@ function Login() {
 
       await schema.validate(data);
       setError("");
+
+      dispatch(userSlice.actions.authenticated(true))
       
     } catch (e: any) {
       let capitalizeErrorMessage = e.errors[0].slice(0);
@@ -54,6 +64,12 @@ function Login() {
       toastError()
     }
   }, [data]);
+
+
+
+  useEffect(() => {
+    console.log(userAuthenticated)
+  }, [userAuthenticated])
 
   return (
     <Wrapper container justifyContent="center" alignItems="center">
