@@ -1,9 +1,13 @@
-const authenticated = (state: any, action: any) => {
-    state.authenticated = action.payload
-}
+import { Action } from '../store/store.type';
+import { User } from './user.type';
+
+const setData = (state: User, action: Action<any>) => {
+  // eslint-disable-next-line no-param-reassign
+  state.data = action.payload;
+};
 
 const reducers = {
-    authenticated
-}
+  setData,
+};
 
-export default reducers
+export default reducers;

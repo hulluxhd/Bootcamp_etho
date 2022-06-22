@@ -1,14 +1,14 @@
 const core = {
-    primary: '#E31A13',
-    secondary: '#1A1A1A'
-}
+  primary: '#E31A13',
+  secondary: '#1A1A1A',
+};
 
 const typography = {
-    primary: '#FFFFFF',
-    contrast: '#868D96'
-}
+  primary: '#FFFFFF',
+  contrast: '#868D96',
+};
 
 export const palette = {
-    core,
-    typography
-}
+  core,
+  typography,
+};

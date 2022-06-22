@@ -1,28 +1,34 @@
-import { Grid } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
-import { BgImage, Logo, Text, Wrapper } from "./login.style";
-import { Input } from "./components/Input/input.style";
-import * as yup from "yup";
-import Button from "../../components/Button/button";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useDispatch, useSelector } from "react-redux";
-import { authenticated } from "../../store/user/user.selector";
-import userSlice from "../../store/user/user.slice";
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
+import { Grid } from '@mui/material';
+import React, { useCallback, useEffect, useState } from 'react';
+import * as yup from 'yup';
+import { toast, ToastContainer } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { authenticated } from '../../store/user/user.selector';
+import userSlice from '../../store/user/user.slice';
+import Button from '../../components/Button/button';
+import {
+  BgImage, Logo, Wrapper, WrapperDiv,
+} from './login.style';
+import { Input } from './components/Input/input.style';
+import 'react-toastify/dist/ReactToastify.css';
+import { Error } from '../../types/yup/yup';
 
 function Login() {
   const [data, setData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
-  const userAuthenticated = useSelector(authenticated)
+  const userAuthenticated = useSelector(authenticated);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
+  const [error, setError] = useState<string>('Campos não preenchidos');
 
   const toastError = () => toast.error(error, {
-    position: "top-right",
+    position: 'top-right',
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -30,10 +36,8 @@ function Login() {
     pauseOnHover: false,
     draggable: true,
     progress: undefined,
-    theme: 'dark'
-    });
-
-  const [error, setError] = useState<string>("Campos não preenchidos");
+    theme: 'dark',
+  });
 
   const handleChange = useCallback(
     ({ target }: any) => {
@@ -42,34 +46,39 @@ function Login() {
         [target.name]: target.value,
       }));
     },
-    [setData]
+    [setData],
   );
 
   const handleSubmit = useCallback(async () => {
     try {
       const schema = yup.object().shape({
-        email: yup.string().min(5).max(100).email().required(),
+        email: yup.string().min(5).max(100).email()
+          .required(),
         password: yup.string().min(4).required(),
       });
 
       await schema.validate(data);
-      setError("");
+      setError('');
 
-      dispatch(userSlice.actions.authenticated(true))
-      
-    } catch (e: any) {
-      let capitalizeErrorMessage = e.errors[0].slice(0);
-      capitalizeErrorMessage = `${capitalizeErrorMessage[0].toUpperCase()}${capitalizeErrorMessage.slice(1)}`
+      dispatch(userSlice.actions.setData({
+        email: 'asdasd',
+      }));
+    } catch (yupError: any) {
+      let capitalizeErrorMessage = (yupError as Error).errors[0].slice(0);
+
+      capitalizeErrorMessage = `
+        ${capitalizeErrorMessage[0].toUpperCase()}
+        ${capitalizeErrorMessage.slice(1)}
+      `;
+
       setError(capitalizeErrorMessage);
-      toastError()
+      toastError();
     }
   }, [data]);
 
-
-
   useEffect(() => {
-    console.log(userAuthenticated)
-  }, [userAuthenticated])
+    console.log(userAuthenticated);
+  }, [userAuthenticated]);
 
   return (
     <Wrapper container justifyContent="center" alignItems="center">
@@ -89,7 +98,14 @@ function Login() {
           placeholder="Senha"
           onChange={handleChange}
         />
-        <Button onClick={handleSubmit}>Entrar</Button>
+        <WrapperDiv>
+          <Button onClick={handleSubmit}>Entrar</Button>
+          <label>
+            <input type="checkbox" />
+            Lembrar de mim
+            <span />
+          </label>
+        </WrapperDiv>
       </Grid>
     </Wrapper>
   );
