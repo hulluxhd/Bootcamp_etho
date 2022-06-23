@@ -10,8 +10,8 @@ Estamos desenvolvendo uma aplicação SPA utilizando o template da Netflix.
 | Yup | Express | 
 | Toastify | MySQL2 | 
 | Typescript | Typeorm | 
-|  | Nodemon | 
-|  | Joi | 
+| Saga | Nodemon | 
+| React Router Dom | Joi | 
 
 ### Cronograma
 - [x] Semana 1 (Frontend) | 30/05 - 03/06
