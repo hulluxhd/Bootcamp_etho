@@ -7,13 +7,13 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticated } from '../../store/user/user.selector';
 import userSlice from '../../store/user/user.slice';
-import Button from '../../components/Button/button';
 import {
   BgImage, Logo, Wrapper, WrapperDiv,
 } from './login.style';
 import { Input } from './components/Input/input.style';
 import 'react-toastify/dist/ReactToastify.css';
 import { Error } from '../../types/yup/yup';
+import Button from '../../components/Button/button';
 
 function Login() {
   const [data, setData] = useState({

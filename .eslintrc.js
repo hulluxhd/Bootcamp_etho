@@ -26,7 +26,12 @@ module.exports = {
     "import/prefer-default-export": "off",
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
-    'react/jsx-props-no-spreading': 'off',
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'no-param-reassign': [
+      'error', {
+        props: true,
+        ignorePropertyModificationsFor: ['state']
+      }
+    ]
   },
 };
