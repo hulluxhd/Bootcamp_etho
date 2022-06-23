@@ -2,8 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import reducers from './user.reducer';
 import { User } from './user.type';
 
-const initialState: User = {
+export const initialState: User = {
   data: {},
+  error: '',
 };
 
 const userSlice = createSlice({

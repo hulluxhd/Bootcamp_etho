@@ -9,6 +9,7 @@ import MoviesList from './pages/Movies-List/movies-list';
 import { LOGIN_URL } from './pages/Login/login.type';
 import { MOVIES_LIST_URL } from './pages/Movies-List/movies-list.type';
 import store from './store/store/store';
+import Guard from './components/Guard/guard';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path={LOGIN_URL} element={<Login />} />
-            <Route path={MOVIES_LIST_URL} element={<MoviesList />} />
+            <Route path={MOVIES_LIST_URL} element={<Guard><MoviesList /></Guard>} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

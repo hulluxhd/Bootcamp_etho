@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -19,9 +15,16 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "extends": "./tsconfig.paths.json"
+    "paths": {
+      "screens/*": ["src/screens/*"],
+      "store/*": ["src/store/*"],
+      "modules/*": ["src/modules/*"],
+      "types/*": ["src/types/*"],
+      "services/*": ["src/services/*"],
+      "themes/*": ["src/themes/*"],
+      "components/*": ["src/components/*"]
+    }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"],
+  "extends": "./tsconfig.path.json"
 }

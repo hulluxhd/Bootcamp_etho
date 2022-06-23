@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
+import userSaga from '../user/user.saga';
 import userSlice from '../user/user.slice';
 
 const saga = createSagaMiddleware();
@@ -11,6 +12,6 @@ const store = configureStore({
   middleware: [saga],
 });
 
-saga.run([]);
+saga.run(userSaga);
 
 export default store;

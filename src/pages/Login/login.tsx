@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import * as yup from 'yup';
 import { toast, ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { authenticated } from '../../store/user/user.selector';
+import { tokenSelector } from '../../store/user/user.selector';
 import userSlice from '../../store/user/user.slice';
 import {
   BgImage, Logo, Wrapper, WrapperDiv,
@@ -21,7 +21,7 @@ function Login() {
     password: '',
   });
 
-  const userAuthenticated = useSelector(authenticated);
+  const userAuthenticated = useSelector(tokenSelector);
 
   const dispatch = useDispatch();
 
@@ -58,11 +58,10 @@ function Login() {
       });
 
       await schema.validate(data);
+
       setError('');
 
-      dispatch(userSlice.actions.setData({
-        email: 'asdasd',
-      }));
+      dispatch(userSlice.actions.authentication(data));
     } catch (yupError: any) {
       let capitalizeErrorMessage = (yupError as Error).errors[0].slice(0);
 
