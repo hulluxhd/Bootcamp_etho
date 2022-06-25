@@ -5,11 +5,11 @@ import { Provider } from 'react-redux';
 import theme from './themes/main/theme';
 import GlobalStyle from './styles/GlobalStyle';
 import Login from './pages/Login/login';
-import MoviesList from './pages/Movies-List/movies-list';
 import { LOGIN_URL } from './pages/Login/login.type';
-import { MOVIES_LIST_URL } from './pages/Movies-List/movies-list.type';
+import { SHOWS_LIST_URL } from './pages/Shows-List/shows-list.type';
 import store from './store/store/store';
 import Guard from './components/Guard/guard';
+import ShowsList from './pages/Shows-List/shows-list';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path={LOGIN_URL} element={<Login />} />
-            <Route path={MOVIES_LIST_URL} element={<Guard><MoviesList /></Guard>} />
+            <Route path={SHOWS_LIST_URL} element={<Guard><ShowsList /></Guard>} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

@@ -9,7 +9,6 @@ export type AuthResponse = AxiosResponse<{
   token: string;
 }>;
 
-// eslint-disable-next-line no-shadow
-export enum AuthErrorMessage {
-  UNREACHABLE_AUTHENTICATION = 'An error ocurred on authentication',
-}
+export const ErrorMessageEnum = {
+  Unauthorized: 'An error ocurred on authentication',
+};
