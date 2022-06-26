@@ -11,4 +11,8 @@ export default createGlobalStyle`
 :root {
   font-family: 'Open Sans', sans-serif;
 }
+
+body {
+  background-color: #1a1a1a;
+}
 `;

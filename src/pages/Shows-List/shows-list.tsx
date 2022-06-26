@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
+import { Container } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { listSelector } from '../../store/shows/show.selector';
+import ShowList from '../../components/Show-List/show-list';
+import { dataSelector } from '../../store/shows/show.selector';
 import showsSlice from '../../store/shows/showsSlice';
 
 function ShowsList() {
-  const list = useSelector(listSelector);
+  const data = useSelector(dataSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -12,11 +14,13 @@ function ShowsList() {
   }, []);
 
   useEffect(() => {
-    console.log(list);
-  }, [list]);
+    console.log(data);
+  }, [data]);
 
   return (
-    <button type="button">Olá</button>
+    <Container>
+      <ShowList />
+    </Container>
   );
 }
 

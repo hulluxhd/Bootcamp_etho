@@ -10,6 +10,8 @@ import { SHOWS_LIST_URL } from './pages/Shows-List/shows-list.type';
 import store from './store/store/store';
 import Guard from './components/Guard/guard';
 import ShowsList from './pages/Shows-List/shows-list';
+import { SHOW_DETAIL_URL } from './pages/ShowDetail/show.type';
+import ShowDetail from './pages/ShowDetail/show-detail';
 
 function App() {
   return (
@@ -19,7 +21,26 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path={LOGIN_URL} element={<Login />} />
-            <Route path={SHOWS_LIST_URL} element={<Guard><ShowsList /></Guard>} />
+            <Route
+              path={SHOWS_LIST_URL}
+              element={
+                (
+                  <Guard>
+                    <ShowsList />
+                  </Guard>
+                )
+              }
+            />
+            <Route
+              path={SHOW_DETAIL_URL}
+              element={
+                (
+                  <Guard>
+                    <ShowDetail />
+                  </Guard>
+                )
+}
+            />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
