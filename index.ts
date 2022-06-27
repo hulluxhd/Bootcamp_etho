@@ -1,5 +1,6 @@
 import "dotenv/config"
 import "reflect-metadata"
+import cors from 'cors'
 import express from "express"
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt"
 import passport from "passport"
@@ -7,6 +8,7 @@ import databaseInitialize from "./src/infrastructure/database/data-source"
 import startRoutes from "./src/routers"
 
 const app: express.Application = express()
+app.use(cors())
 
 const PORT = 3000
 const opts = {
