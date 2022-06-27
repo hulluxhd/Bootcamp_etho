@@ -1,12 +1,20 @@
 /* eslint-disable no-param-reassign */
 import {
-  GetList, SetData, SetError, SetSettings,
+  GetList, SetError, SetList, SetMyList, SetSettings,
 } from './shows.type';
 
 const getList: GetList = (_state, _action) => {};
 
-const setData: SetData = (state, action) => {
-  state.data = action.payload;
+const getMyList: GetList = (_state, _action) => {};
+
+const setMyList: SetList = (state, action) => {
+  // @ts-ignore
+  state.data.myList = action.payload;
+};
+
+const setList: SetMyList = (state, action) => {
+  // @ts-ignore
+  state.data.list = action.payload;
 };
 
 const setSettings: SetSettings = (state, action) => {
@@ -18,10 +26,12 @@ const setError: SetError = (state, action) => {
 };
 
 const reducers = {
-  setData,
+  setList,
+  setMyList,
   setSettings,
   setError,
   getList,
+  getMyList,
 };
 
 export default reducers;

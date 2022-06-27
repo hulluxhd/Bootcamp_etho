@@ -17,10 +17,13 @@ export type Show = {
     episodes: []
 }
 
-export type List = Show[]
+export type List = {
+    [key: string]: Show[],
+}
 
 export type Data = {
-    [key: string]: List
+    myList: Show[],
+    list: List
 }
 
 export type Settings = {
@@ -39,7 +42,9 @@ export type BaseReducer<Payload> = (state: Shows, action: PayloadAction<Payload>
 
 export type GetList = BaseReducer<undefined>;
 
-export type SetData = BaseReducer<Data>;
+export type SetList = BaseReducer<List >;
+
+export type SetMyList = BaseReducer<Data['myList'] >;
 
 export type SetSettings = BaseReducer<Settings>;
 

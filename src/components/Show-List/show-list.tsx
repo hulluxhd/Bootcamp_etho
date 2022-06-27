@@ -1,47 +1,47 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { Box } from '@mui/material';
-import { dataSelector } from '../../store/shows/show.selector';
 import Item from './components/Item/item';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Arrow from './components/Arrow/arrow';
 import { Title } from './components/Title/title.styled';
+import { Props } from './shows-list.type';
+import Header from '../Header/header';
 
-function ShowList() {
-  const data = useSelector(dataSelector);
-  const movies = data.MOVIE;
-  const tvShows = data.TV_SHOWS;
-
+export default function ShowsList({
+  title,
+  shows,
+  autoplay,
+  autoplaySpeed,
+  arrows = true,
+  width = '200px',
+  height = '260px',
+  slidesToShow = 5,
+}: Props) {
   return (
-    <>
-      <Box m="82px 0">
-        <Title>Filmes</Title>
-        <Slider
-          slidesToShow={5}
-          nextArrow={<Arrow />}
-          prevArrow={<Arrow />}
-        >
-          {movies?.map(({ cover, id }) => (
-            <Item key={id} cover={cover} id={id} />
-          ))}
-        </Slider>
-      </Box>
-      <Box m="82px 0">
-        <Title>Series</Title>
-        <Slider
-          slidesToShow={5}
-          nextArrow={<Arrow />}
-          prevArrow={<Arrow />}
-        >
-          {tvShows?.map(({ cover, id }) => (
-            <Item key={id} cover={cover} id={id} />
-          ))}
-        </Slider>
-      </Box>
-    </>
+
+    <Box margin="82px 0">
+      {title && <Title>{title}</Title>}
+      <Slider
+        centerMode
+        arrows={arrows}
+        autoplay={autoplay}
+        nextArrow={<Arrow />}
+        prevArrow={<Arrow />}
+        slidesToShow={slidesToShow}
+        autoplaySpeed={autoplaySpeed}
+      >
+        {shows.map(({ cover, id }) => (
+          <Item
+            id={id}
+            key={id}
+            cover={cover}
+            width={width}
+            height={height}
+          />
+        ))}
+      </Slider>
+    </Box>
   );
 }
-
-export default ShowList;
