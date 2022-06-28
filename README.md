@@ -55,7 +55,7 @@ Há três branchs principais: frontend, backend e typescript.
   - digite `yarn run start` ou `npm run start`
 7. Volte para a branch de front-end e execute a instância
   - `yarn start` ou `npm start`
-8. Abra o postman ou insomnia e faça algumas requisições (localhost:3000/shows): 
+8. Abra o postman ou insomnia e faça algumas requisições (localhost:3001/shows): 
   - requisição para criação da lista de filmes:
     ```
     {
@@ -80,7 +80,7 @@ Há três branchs principais: frontend, backend e typescript.
     }
     ```
     Repita 6 vezes.
-  - requisição para criação de usuário: 
+  - requisição para criação de usuário (localhost:3001/users): 
      ```
      {
       "email": "teste@teste.com",
@@ -89,7 +89,7 @@ Há três branchs principais: frontend, backend e typescript.
      ```
 9. Faça login na aplicação e obtenha o token retornado pelo JWT no back-end. Você pode recuperá-lo pelo redux devtools ou pelo devtools do navegador (há um console.log para o token).
 10. Volte para o postman ou insomnia e gere algumas requisições para adicionar títulos à lista de usuário. 
-  - Passe o seu token no campo de autenticação da ferramenta, no tipo de autenticação 'bearer'. No body da requisição, passe um json como o do exemplo (localhost:3000/list):
+  - Passe o seu token no campo de autenticação da ferramenta, no tipo de autenticação 'bearer'. No body da requisição, passe um json como o do exemplo (localhost:3001/list):
     ```
       {
         showId: 1,
