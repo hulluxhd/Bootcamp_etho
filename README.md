@@ -1,5 +1,5 @@
 # Projeto feito durante o Bootcamp Etho + McFadyen
-Estamos desenvolvendo uma aplicação SPA utilizando o template da Netflix.
+Aplicação SPA utilizando o template da Netflix.
 
 ## Tecnologias e Libs
 | Front | Back |
